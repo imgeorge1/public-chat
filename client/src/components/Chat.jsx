@@ -3,14 +3,16 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://public-chat2.onrender.com");
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
 
   async function getMessages() {
     try {
-      const response = await axios.get("http://localhost:3000/message");
+      const response = await axios.get(
+        "https://public-chat2.onrender.com/message"
+      );
       // console.log(response.data);
       setMessageArr(response.data);
     } catch (error) {
