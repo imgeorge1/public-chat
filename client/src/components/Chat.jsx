@@ -11,7 +11,7 @@ export default function Chat() {
   async function getMessages() {
     try {
       const response = await axios.get("http://localhost:3000/message");
-      console.log(response.data);
+      // console.log(response.data);
       setMessageArr(response.data);
     } catch (error) {
       console.error(error);

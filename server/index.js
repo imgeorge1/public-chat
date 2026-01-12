@@ -2,6 +2,7 @@ import express from "express";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import cors from "cors";
+import { env } from "process";
 
 const port = 3000;
 const app = express();
@@ -9,10 +10,10 @@ const httpServer = createServer(app);
 const messages = [];
 
 const io = new Server(httpServer, {
-  cors: { origin: "http://localhost:5173" },
+  cors: { origin: "*" },
 });
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 app.get("/message", (req, res) => {
