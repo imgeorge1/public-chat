@@ -3,12 +3,15 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
 
+// change in production https://public-chat2.onrender.com || http://localhost:3000/message
 const socket = io("https://public-chat2.onrender.com");
+
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
 
   async function getMessages() {
+    // change in production https://public-chat2.onrender.com
     try {
       const response = await axios.get(
         "https://public-chat2.onrender.com/message"
@@ -22,7 +25,9 @@ export default function Chat() {
   getMessages();
 
   function sendMessage(e) {
-    socket.emit("msg", socket.id, message);
+    if (message != "" && message != " ") {
+      socket.emit("msg", socket.id, message);
+    }
     getMessages();
     setMessage("");
   }
