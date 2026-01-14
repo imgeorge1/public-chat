@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<Landing />} /> */}
-        <Route path="/" element={<Chat />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/Chat" element={<Chat />} />
       </Routes>
     </Router>
   );
