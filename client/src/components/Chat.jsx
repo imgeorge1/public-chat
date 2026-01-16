@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { io } from "socket.io-client";
+import { socket } from "../socket";
 import axios from "axios";
-
-// change in production https://public-chat2.onrender.com || http://localhost:3000/message
-const socket = io("http://localhost:3000");
 
 export default function Chat() {
   const [message, setMessage] = useState("");
@@ -13,7 +10,9 @@ export default function Chat() {
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
     try {
-      const response = await axios.get("http://localhost:3000/message");
+      const response = await axios.get(
+        "https://public-chat2.onrender.com/message"
+      );
       // console.log(response.data);
       setMessageArr(response.data);
     } catch (error) {
@@ -24,7 +23,7 @@ export default function Chat() {
 
   function sendMessage(e) {
     if (message != "" && message != " ") {
-      socket.emit("msg", socket.id, message);
+      socket.emit("msg", message);
     }
     getMessages();
     setMessage("");
@@ -34,7 +33,7 @@ export default function Chat() {
     <div className=" flex flex-col h-screen">
       <h1 className="bg-[#A8E6A3] text-center text-[24px]">THE CHAT PALACE</h1>
       <h2 className="bg-[#A8E6A3] text-[18px] px-6">
-        connected as: {socket.id}
+        {/* connected as: {socket.nickname} */}
       </h2>
       <div className="flex-1 overflow-y-auto p-4">
         <ul>

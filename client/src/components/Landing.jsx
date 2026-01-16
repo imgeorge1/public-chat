@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { socket } from "../socket";
 
 export default function Landing() {
   const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  function chooseName() {
+    socket.emit("chooseName", name);
+  }
 
   return (
     <div>
@@ -11,6 +18,8 @@ export default function Landing() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          chooseName();
+          navigate("/Chat");
         }}
         className="flex justify-center"
       >
