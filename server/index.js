@@ -20,7 +20,7 @@ app.get("/message", (req, res) => {
   res.json(messages);
 });
 
-app.get("/Chat", (req, res) => {
+app.get("/chat", (req, res) => {
   res.sendStatus(200);
 });
 

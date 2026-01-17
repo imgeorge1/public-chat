@@ -20,7 +20,7 @@ export default function Landing() {
           e.preventDefault();
           chooseName();
           name != "SERVER" && name.trim() !== ""
-            ? navigate("/Chat")
+            ? navigate("/chat")
             : alert("sorry you can't have this name");
         }}
         className="flex justify-center"
