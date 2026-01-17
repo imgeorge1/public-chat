@@ -1,7 +1,7 @@
 // socket.js
 import { io } from "socket.io-client";
 
-export const socket = io("https://public-chat-fffg.onrender.com", {
+export const socket = io("https://public-chat2.onrender.com", {
   transports: ["websocket"],
 });
 
