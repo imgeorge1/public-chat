@@ -9,6 +9,10 @@ export default function Chat() {
   const [messageArr, setMessageArr] = useState([]);
   const navigate = useNavigate();
 
+  socket.on("invalid-username", () => {
+    navigate("/");
+  });
+
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
     try {
