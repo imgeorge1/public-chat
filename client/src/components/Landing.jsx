@@ -19,7 +19,9 @@ export default function Landing() {
         onSubmit={(e) => {
           e.preventDefault();
           chooseName();
-          navigate("/Chat");
+          name != "SERVER" && name.trim() !== ""
+            ? navigate("/Chat")
+            : alert("sorry you can't have this name");
         }}
         className="flex justify-center"
       >
