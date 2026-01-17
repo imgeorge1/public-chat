@@ -10,7 +10,7 @@ export default function Chat() {
   const navigate = useNavigate();
 
   socket.on("invalid-username", () => {
-    socket.disconnect();
+    socket.disconnect;
     navigate("/");
   });
 
