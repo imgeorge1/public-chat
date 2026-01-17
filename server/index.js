@@ -41,7 +41,6 @@ io.on("connection", (socket) => {
   });
 
   if (!socket.nickname || socket.nickname.trim() === "") {
-    socket.emit("invalid-username");
     messages.push({
       userName: "SERVER",
       messageContent: `An user has left the chat`,

@@ -1,17 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { socket } from "../socket";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
-  const navigate = useNavigate();
-
-  socket.on("invalid-username", () => {
-    navigate("https://public-chat-fffg.onrender.com/");
-  });
 
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
