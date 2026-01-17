@@ -20,6 +20,10 @@ app.get("/message", (req, res) => {
   res.json(messages);
 });
 
+app.get("/Chat", (req, res) => {
+  res.json(messages);
+});
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
   // console.log(messages);
