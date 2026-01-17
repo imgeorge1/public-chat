@@ -10,7 +10,7 @@ export default function Chat() {
   const navigate = useNavigate();
 
   socket.on("invalid-username", () => {
-    navigate("/");
+    navigate("https://public-chat-fffg.onrender.com/");
   });
 
   async function getMessages() {
