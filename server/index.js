@@ -41,7 +41,6 @@ io.on("connection", (socket) => {
   });
 
   if (!socket.nickname || socket.nickname.trim() === "") {
-    socket.emit("invalid-username");
     socket.disconnect();
     messages.push({
       userName: "SERVER",
