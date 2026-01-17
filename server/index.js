@@ -21,7 +21,7 @@ app.get("/message", (req, res) => {
 });
 
 app.get("/Chat", (req, res) => {
-  res.json(messages);
+  res.sendStatus(200);
 });
 
 io.on("connection", (socket) => {
