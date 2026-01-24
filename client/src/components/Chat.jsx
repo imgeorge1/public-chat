@@ -15,6 +15,9 @@ export default function Chat() {
   });
 
   async function getMessages() {
+    if (messageArr.length > 32) {
+      setMessageArr((prev) => prev.slice(1));
+    }
     // change in production https://public-chat2.onrender.com
     try {
       const response = await axios.get(
@@ -22,11 +25,6 @@ export default function Chat() {
       );
       // console.log(response.data);
       setMessageArr(response.data);
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "center",
-      });
     } catch (error) {
       console.error(error);
     }
@@ -36,6 +34,13 @@ export default function Chat() {
   function sendMessage(e) {
     if (message != "" && message.trim() != "") {
       socket.emit("msg", message);
+    }
+    if (message) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "center",
+      });
     }
     getMessages();
     setMessage("");
@@ -55,7 +60,7 @@ export default function Chat() {
         {/* connected as: {socket.nickname} */}
       </h2>
       <div className="flex-1 overflow-y-auto p-4">
-        <ul id="ul">
+        <ul id="ul" className="text-[1.2rem]">
           {messageArr
             .filter((msg) => msg.userName && msg.userName.trim() !== "")
             .map((msg) => (
@@ -82,6 +87,7 @@ export default function Chat() {
               name="message"
               placeholder="Send a message"
               value={message}
+              autoComplete="off"
               onChange={(e) => setMessage(e.target.value)}
               className="w-full h-[2.5rem] ml-4 mr-2 text-2xl border"
             />
