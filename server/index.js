@@ -10,7 +10,7 @@ const httpServer = createServer(app);
 const messages = [];
 
 const io = new Server(httpServer, {
-  cors: { origin: "*" }, //need to change origin
+  cors: { origin: "https://public-chat-fffg.onrender.com" }, 
 });
 
 app.use(cors({ origin: "*" }));
