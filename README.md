@@ -1,5 +1,7 @@
 # Public Chat
 
+**Live Demo:** https://public-chat-fffg.onrender.com/
+
 A simple public chat application built as a **learning project** to explore real-time communication.
 
 ## About
