@@ -10,6 +10,7 @@ It is **not production-ready** and is intended as a demo / experiment.
 - Real-time public chat
 - See when a user **joins** the chat
 - See when a user **leaves** the chat
+- Auto-scrolls when new messages arrive
 - Lightweight and minimal UI
 
 ## Tech Stack
