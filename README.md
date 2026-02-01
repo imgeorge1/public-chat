@@ -10,8 +10,9 @@ It is **not production-ready** and is intended as a demo / experiment.
 
 ## Features
 - Real-time public chat
-- See when a user **joins** the chat
-- See when a user **leaves** the chat
+- Custom usernames with no authentication
+- See when a user joins the chat
+- See when a user leaves the chat
 - Auto-scrolls when new messages arrive
 - Lightweight and minimal UI
 
