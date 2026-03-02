@@ -9,7 +9,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
   const navigate = useNavigate();
-  const element = document.getElementById("ul");
+  const element = document.getElementById("scrollToBottomOfThis");
 
   socket.on("invalid-username", () => {
     navigate("/");
@@ -50,7 +50,7 @@ export default function Chat() {
         {/* connected as: {socket.nickname} */}
       </h2>
       <div className="flex-1 overflow-y-auto p-4">
-        <ul id="ul" className="text-[1.2rem]">
+        <ul className="text-[1.2rem] pb-10" id="scrollToBottomOfThis">
           {messageArr
             .filter((msg) => msg.username && msg.username.trim() !== "")
             .map((msg) => (
