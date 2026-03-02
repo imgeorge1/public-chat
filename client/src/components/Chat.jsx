@@ -38,7 +38,7 @@ export default function Chat() {
         inline: "center",
       });
     }
-    console.log(messageArr);
+    // console.log(messageArr);
     getMessages();
     setMessage("");
   }
