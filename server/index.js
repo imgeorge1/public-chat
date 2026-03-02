@@ -1,8 +1,10 @@
 import express from "express";
 import { Server } from "socket.io";
 import { createServer } from "http";
+import { sendMessage, getMessages } from "./models/messageModel.js";
 import cors from "cors";
-import { env } from "process";
+import dotenv from "dotenv";
+dotenv.config();
 
 const port = 3000;
 const app = express();
@@ -10,13 +12,14 @@ const httpServer = createServer(app);
 const messages = [];
 
 const io = new Server(httpServer, {
-  cors: { origin: "*" }, //need to change origin
+  cors: { origin: "*" }, //need to change origin https://public-chat-fffg.onrender.com
 });
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-app.get("/message", (req, res) => {
+app.get("/message", async (req, res) => {
+  const messages = await getMessages();
   res.json(messages);
 });
 
@@ -33,24 +36,19 @@ io.on("connection", (socket) => {
       console.log("sorry you can't have this name");
     } else {
       socket.nickname = nickName;
-      messages.push({
-        userName: "SERVER",
-        messageContent: `${nickName} has joined the chat`,
-      });
+      sendMessage("SERVER", `${nickName} has joined the chat`);
     }
   });
 
   if (!socket.nickname || socket.nickname.trim() === "") {
     socket.emit("invalid-username");
-    messages.push({
-      userName: "SERVER",
-      messageContent: `An user has left the chat`,
-    });
+    sendMessage("SERVER", `An user has left the chat`);
   }
   socket.on("msg", (messageData) => {
     // console.log(user, messageData);
-    messages.push({ userName: socket.nickname, messageContent: messageData });
-    // console.log(messages);
+    // messages.push({ userName: socket.nickname, messageContent: messageData });
+    sendMessage(socket.nickname, messageData);
+    // console.log(messages)
   });
 });
 
