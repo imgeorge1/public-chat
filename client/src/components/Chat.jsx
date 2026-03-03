@@ -55,9 +55,10 @@ export default function Chat() {
             .filter((msg) => msg.username && msg.username.trim() !== "")
             .map((msg) => (
               <Item
-                key={crypto.randomUUID()} // or msg.id if you have one
+                key={msg.messageid} // or msg.id if you have one
                 isServer={msg.username === "SERVER"}
                 userName={msg.username}
+                isUser={msg.socketid === socket.id}
                 messageContent={msg.item}
               />
             ))}

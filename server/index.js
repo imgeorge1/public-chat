@@ -47,8 +47,8 @@ io.on("connection", (socket) => {
   socket.on("msg", (messageData) => {
     // console.log(user, messageData);
     // messages.push({ userName: socket.nickname, messageContent: messageData });
-    sendMessage(socket.nickname, messageData);
-    // console.log(messages)
+    sendMessage(socket.nickname, messageData, socket.id);
+    // console.log(socket.id);
   });
 });
 

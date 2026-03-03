@@ -1,10 +1,10 @@
 import pool from "../db.js";
 
-export async function sendMessage(userName, item) {
-  await pool.query("INSERT INTO messages(userName, item) VALUES($1, $2)", [
-    userName,
-    item,
-  ]);
+export async function sendMessage(userName, item, socketID) {
+  await pool.query(
+    "INSERT INTO messages(userName, item, socketid) VALUES($1, $2, $3)",
+    [userName, item, socketID],
+  );
 }
 
 export async function getMessages() {
