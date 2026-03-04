@@ -18,7 +18,7 @@ export default function Chat() {
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
     try {
-      const response = await axios.get("http://localhost:3000/message");
+      const response = await axios.get("http://localhost:3000/message/");
       // console.log(response.data);
       setMessageArr(response.data.rows);
     } catch (error) {
@@ -55,10 +55,11 @@ export default function Chat() {
             .filter((msg) => msg.username && msg.username.trim() !== "")
             .map((msg) => (
               <Item
-                key={msg.messageid} // or msg.id if you have one
+                key={msg.messageid}
                 isServer={msg.username === "SERVER"}
                 userName={msg.username}
                 isUser={msg.socketid === socket.id}
+                msgID={msg.messageid}
                 messageContent={msg.item}
               />
             ))}

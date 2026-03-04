@@ -1,7 +1,11 @@
 import express from "express";
 import { Server } from "socket.io";
 import { createServer } from "http";
-import { sendMessage, getMessages } from "./models/messageModel.js";
+import {
+  sendMessage,
+  getMessages,
+  deleteMessage,
+} from "./models/messageModel.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
@@ -21,6 +25,15 @@ app.use(express.json());
 app.get("/message", async (req, res) => {
   const messages = await getMessages();
   res.json(messages);
+});
+
+app.delete("/messageDelete/:msgID", async (req, res) => {
+  const { msgID } = req.params;
+  try {
+    deleteMessage(msgID);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.get("/chat", (req, res) => {

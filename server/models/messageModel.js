@@ -11,3 +11,7 @@ export async function getMessages() {
   const result = await pool.query("SELECT * FROM messages ");
   return result;
 }
+
+export async function deleteMessage(msgid) {
+  await pool.query("DELETE FROM messages WHERE messageid = $1", [msgid]);
+}
