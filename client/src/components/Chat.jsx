@@ -66,6 +66,7 @@ export default function Chat() {
               />
             ))}
         </ul>
+        <div id="scrollToBottomOfThis"></div>
       </div>
       <div className="sticky bottom-0 w-full bg-white">
         <div className="w-full h-[1rem] h-full">
