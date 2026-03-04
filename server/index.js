@@ -50,18 +50,14 @@ io.on("connection", (socket) => {
   // console.log(messages);
 
   socket.on("chooseName", (nickName) => {
-    if (nickName === "SERVER") {
-      console.log("sorry you can't have this name");
-    } else {
-      socket.nickname = nickName;
-      sendMessage("SERVER", `${nickName} has joined the chat`);
-    }
-  });
-
-  if (!socket.nickname || socket.nickname.trim() === "") {
+  if (!nickName || nickName.trim() === "" || nickName === "SERVER") {
     socket.emit("invalid-username");
-    sendMessage("SERVER", `An user has left the chat`);
+    return;
   }
+
+  socket.nickname = nickName;
+  sendMessage("SERVER", `${nickName} has joined the chat`);
+});
   socket.on("msg", (messageData) => {
     // console.log(user, messageData);
     // messages.push({ userName: socket.nickname, messageContent: messageData });
