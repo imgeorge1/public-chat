@@ -52,7 +52,7 @@ export default function Chat() {
         {/* connected as: {socket.nickname} */}
       </h2>
       <div className="flex-1 overflow-y-auto p-4">
-        <ul className="text-[1.2rem] pb-10" id="scrollToBottomOfThis">
+        <ul id="ul" className="text-[1.2rem] pb-10">
           {messageArr
             .filter((msg) => msg.username && msg.username.trim() !== "")
             .map((msg) => (
