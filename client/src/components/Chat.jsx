@@ -2,29 +2,27 @@ import React from "react";
 import { useState } from "react";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
+import Item from "./MessageItem";
 import axios from "axios";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
   const navigate = useNavigate();
-  const element = document.getElementById("ul");
+  const element = document.getElementById("scrollToBottomOfThis");
 
   socket.on("invalid-username", () => {
     navigate("/");
   });
 
   async function getMessages() {
-    if (messageArr.length > 32) {
-      setMessageArr((prev) => prev.slice(1));
-    }
     // change in production https://public-chat2.onrender.com
     try {
       const response = await axios.get(
-        "https://public-chat2.onrender.com/message",
+        "https://public-chat2.onrender.com/message/",
       );
       // console.log(response.data);
-      setMessageArr(response.data);
+      setMessageArr(response.data.rows);
     } catch (error) {
       console.error(error);
     }
@@ -42,17 +40,11 @@ export default function Chat() {
         inline: "center",
       });
     }
+    // console.log(messageArr);
     getMessages();
     setMessage("");
   }
 
-  function Item({ isServer, userName, messageContent }) {
-    return (
-      <li className={isServer ? "bg-[#A8E6A3]" : ""}>
-        {userName}: {messageContent}
-      </li>
-    );
-  }
   return (
     <div className=" flex flex-col h-screen">
       <h1 className="bg-[#A8E6A3] text-center text-[24px]">THE CHAT PALACE</h1>
@@ -62,13 +54,15 @@ export default function Chat() {
       <div className="flex-1 overflow-y-auto p-4">
         <ul id="ul" className="text-[1.2rem] pb-10">
           {messageArr
-            .filter((msg) => msg.userName && msg.userName.trim() !== "")
+            .filter((msg) => msg.username && msg.username.trim() !== "")
             .map((msg) => (
               <Item
-                key={crypto.randomUUID()} // or msg.id if you have one
-                isServer={msg.userName === "SERVER"}
-                userName={msg.userName}
-                messageContent={msg.messageContent}
+                key={msg.messageid}
+                isServer={msg.username === "SERVER"}
+                userName={msg.username}
+                isUser={msg.socketid === socket.id}
+                msgID={msg.messageid}
+                messageContent={msg.item}
               />
             ))}
         </ul>
