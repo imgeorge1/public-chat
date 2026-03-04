@@ -19,7 +19,12 @@ const io = new Server(httpServer, {
   cors: { origin: "https://public-chat-fffg.onrender.com" }, //need to change origin https://public-chat-fffg.onrender.com
 });
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "https://public-chat-fffg.onrender.com",
+    methods: ["GET", "POST", "DELETE"],
+  })
+);
 app.use(express.json());
 
 app.get("/message", async (req, res) => {
