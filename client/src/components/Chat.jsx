@@ -18,7 +18,9 @@ export default function Chat() {
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
     try {
-      const response = await axios.get("http://localhost:3000/message/");
+      const response = await axios.get(
+        "https://public-chat2.onrender.com/message/",
+      );
       // console.log(response.data);
       setMessageArr(response.data.rows);
     } catch (error) {
