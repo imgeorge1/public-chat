@@ -19,7 +19,7 @@ export default function Chat() {
     // change in production https://public-chat2.onrender.com
     try {
       const response = await axios.get(
-        "https://public-chat2.onrender.com/message/",
+        "https://public-chat2.onrender.com/message",
       );
       // console.log(response.data);
       setMessageArr(response.data.rows);
