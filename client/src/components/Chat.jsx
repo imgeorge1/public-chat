@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
 import Item from "./MessageItem";
@@ -14,7 +14,6 @@ export default function Chat() {
   socket.on("invalid-username", () => {
     navigate("/");
   });
-
   async function getMessages() {
     // change in production https://public-chat2.onrender.com
     try {
@@ -27,7 +26,14 @@ export default function Chat() {
       console.error(error);
     }
   }
-  getMessages();
+
+  useEffect(() => {
+    const wake = async () => {
+      await axios.get("https://public-chat2.onrender.com/chat");
+      getMessages();
+    };
+    wake();
+  }, []);
 
   function sendMessage(e) {
     if (message != "" && message.trim() != "") {
