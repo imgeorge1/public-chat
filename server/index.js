@@ -16,14 +16,14 @@ const httpServer = createServer(app);
 const messages = [];
 
 const io = new Server(httpServer, {
-  cors: { origin: "https://public-chat-fffg.onrender.com" }, //need to change origin https://public-chat-fffg.onrender.com
+  cors: { origin: "http://localhost:5173" }, //need to change origin https://public-chat-fffg.onrender.com
 });
 
 app.use(
   cors({
-    origin: "https://public-chat-fffg.onrender.com",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "DELETE"],
-  })
+  }),
 );
 app.use(express.json());
 
@@ -50,14 +50,17 @@ io.on("connection", (socket) => {
   // console.log(messages);
 
   socket.on("chooseName", (nickName) => {
-  if (!nickName || nickName.trim() === "" || nickName === "SERVER") {
+    if (!nickName || nickName.trim() === "" || nickName === "SERVER") {
+      socket.emit("invalid-username");
+      return;
+    }
+    socket.nickname = nickName;
+    sendMessage("SERVER", `${nickName} has joined the chat`);
+  });
+  if (!socket.nickname || socket.nickname.trim() === "") {
     socket.emit("invalid-username");
-    return;
+    sendMessage("SERVER", `An user has left the chat`);
   }
-
-  socket.nickname = nickName;
-  sendMessage("SERVER", `${nickName} has joined the chat`);
-});
   socket.on("msg", (messageData) => {
     // console.log(user, messageData);
     // messages.push({ userName: socket.nickname, messageContent: messageData });

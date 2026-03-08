@@ -10,9 +10,7 @@ export default function Item({
   async function messageDelete(msgID) {
     console.log(msgID);
     try {
-      await axios.delete(
-        `https://public-chat2.onrender.com/messageDelete/${msgID}`,
-      ); //need to change later
+      await axios.delete(`http://localhost:3000/messageDelete/${msgID}`); //need to change later
     } catch (error) {
       console.log(error);
     }
