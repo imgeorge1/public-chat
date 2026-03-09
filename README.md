@@ -43,13 +43,13 @@ It is **not production-ready** and is intended as a demo / experiment.
 ## Limitations
 - Hosted on Render **free tier**, so the server may take time to wake up
 - Refreshing the page disconnects the user
-- ~~ Old messages are deleted on refresh to avoid server overload ~~
-- ~~No database — messages are stored **temporarily in memory** ~~
+- ~~Old messages are deleted on refresh to avoid server overload~~
+- ~~No database — messages are stored **temporarily in memory**~~
 - No authentication or moderation
 
 ## Future Improvements
-- ~~ Edit or delete your own messages ~~
-- ~~ Add a database for message persistence ~~
+- ~~Edit or delete your own messages~~
+- ~~Add a database for message persistence~~
 - User profiles
 - Friends system
 - Direct messages
