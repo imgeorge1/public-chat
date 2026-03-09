@@ -43,13 +43,13 @@ It is **not production-ready** and is intended as a demo / experiment.
 ## Limitations
 - Hosted on Render **free tier**, so the server may take time to wake up
 - Refreshing the page disconnects the user
-- <span style="text-decoration: overline;"> Old messages are deleted on refresh to avoid server overload </span>
-- <span style="text-decoration: overline;"> No database — messages are stored **temporarily in memory** </span>
+- ~~ Old messages are deleted on refresh to avoid server overload ~~
+- ~~No database — messages are stored **temporarily in memory** ~~
 - No authentication or moderation
 
 ## Future Improvements
-- <span style="text-decoration: overline;"> Edit or delete your own messages </span>
-- <span style="text-decoration: overline;"> Add a database for message persistence </span>
+- ~~ Edit or delete your own messages ~~
+- ~~ Add a database for message persistence ~~
 - User profiles
 - Friends system
 - Direct messages
