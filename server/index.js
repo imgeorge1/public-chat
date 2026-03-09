@@ -10,18 +10,19 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
+const front_url = process.env.FRONTEND_URL;
 const port = 3000;
 const app = express();
 const httpServer = createServer(app);
 const messages = [];
 
 const io = new Server(httpServer, {
-  cors: { origin: "https://public-chat-fffg.onrender.com" }, //need to change origin https://public-chat-fffg.onrender.com
+  cors: { origin: `${front_url}` }, //need to change origin https://public-chat-fffg.onrender.com
 });
 
 app.use(
   cors({
-    origin: "https://public-chat-fffg.onrender.com",
+    origin: `${front_url}`,
   }),
 );
 app.use(express.json());

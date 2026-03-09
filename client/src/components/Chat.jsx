@@ -27,9 +27,7 @@ export default function Chat() {
       console.error(error);
     }
   }
-  useEffect(() => {
-    getMessages();
-  }, []);
+  getMessages();
 
   function sendMessage(e) {
     if (message != "" && message.trim() != "") {
